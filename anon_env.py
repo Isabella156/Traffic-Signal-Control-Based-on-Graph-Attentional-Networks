@@ -804,8 +804,8 @@ class AnonEnv:
             "flowFile": self.dic_traffic_env_conf["TRAFFIC_FILE"],
             "rlTrafficLight": self.dic_traffic_env_conf["RLTRAFFICLIGHT"],
             "saveReplay": self.dic_traffic_env_conf["SAVEREPLAY"],
-            "roadnetLogFile": "frontend/web/roadnetLogFile.json",
-            "replayLogFile": "frontend/web/replayLogFile.txt"
+            "roadnetLogFile": "roadnetLogFile.json",
+            "replayLogFile": "replayLogFile.txt"
         }
         print("=========================")
         print(cityflow_config)
