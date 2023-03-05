@@ -499,11 +499,13 @@ class Intersection:
             if neighbor is None:
                 example_dic_feature["cur_phase_{0}".format(i)] = none_dic_feature["cur_phase"]
                 example_dic_feature["time_this_phase_{0}".format(i)] = none_dic_feature["time_this_phase"]
-                example_dic_feature["lane_num_vehicle_{0}".format(i)] = none_dic_feature["lane_num_vehicle"]
+                # example_dic_feature["lane_num_vehicle_{0}".format(i)] = none_dic_feature["lane_num_vehicle"]
+                example_dic_feature["lane_queue_length{0}".format(i)] = none_dic_feature["lane_queue_length"]
             else:
                 example_dic_feature["cur_phase_{0}".format(i)] = neighbor.dic_feature["cur_phase"]
                 example_dic_feature["time_this_phase_{0}".format(i)] = neighbor.dic_feature["time_this_phase"]
-                example_dic_feature["lane_num_vehicle_{0}".format(i)] = neighbor.dic_feature["lane_num_vehicle"]
+                # example_dic_feature["lane_num_vehicle_{0}".format(i)] = neighbor.dic_feature["lane_num_vehicle"]
+                example_dic_feature["lane_queue_length{0}".format(i)] = neighbor.dic_feature["lane_queue_length"]
             dic_feature.update(example_dic_feature)
         return dic_feature
 
@@ -527,7 +529,7 @@ class Intersection:
         dic_feature["vehicle_waiting_time_img"] = None #self._get_lane_vehicle_accumulated_waiting_time(self.list_entering_lanes)
 
         dic_feature["lane_num_vehicle"] = self._get_lane_num_vehicle(self.list_entering_lanes)
-        dic_feature["pressure"] = None # [self._get_pressure()]
+        dic_feature["pressure"] = self._get_pressure()
 
         if self.fast_compute:
             dic_feature["coming_vehicle"] = None
@@ -540,8 +542,8 @@ class Intersection:
 
         dic_feature["lane_num_vehicle_been_stopped_thres01"] = None # self._get_lane_num_vehicle_been_stopped(0.1, self.list_entering_lanes)
         dic_feature["lane_num_vehicle_been_stopped_thres1"] = self._get_lane_num_vehicle_been_stopped(1, self.list_entering_lanes)
-        dic_feature["lane_queue_length"] = None # self._get_lane_queue_length(self.list_entering_lanes)
-        dic_feature["lane_num_vehicle_left"] = None
+        dic_feature["lane_queue_length"] = self._get_lane_queue_length(self.list_entering_lanes)
+        dic_feature["lane_num_vehicle_left"] = self._get_lane_num_vehicle_left
         dic_feature["lane_sum_duration_vehicle_left"] = None
         dic_feature["lane_sum_waiting_time"] = None #self._get_lane_sum_waiting_time(self.list_entering_lanes)
         dic_feature["terminal"] = None

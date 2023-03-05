@@ -155,7 +155,9 @@ class CoLightAgent(Agent):
                 continue
             elif "phase" in feature_name:
                 len_feature += self.dic_traffic_env_conf["DIC_FEATURE_DIM"]["D_"+feature_name.upper()]
-            elif feature_name=="lane_num_vehicle":
+            #elif feature_name=="lane_num_vehicle":
+                #len_feature += (self.dic_traffic_env_conf["DIC_FEATURE_DIM"]["D_"+feature_name.upper()][0]*self.num_lanes,)
+            elif feature_name == "lane_queue_length":
                 len_feature += (self.dic_traffic_env_conf["DIC_FEATURE_DIM"]["D_"+feature_name.upper()][0]*self.num_lanes,)
         return sum(len_feature)
 
@@ -280,7 +282,9 @@ class CoLightAgent(Agent):
                                                             [state[i][j][feature_name][0]])
                             else:
                                 observation.extend(state[i][j][feature_name])
-                        elif feature_name=="lane_num_vehicle":
+                        # elif feature_name=="lane_num_vehicle":
+                        #     observation.extend(state[i][j][feature_name])
+                        elif feature_name=="lane_queue_length":
                             observation.extend(state[i][j][feature_name])
                     feature.append(observation)
                     adj.append(state[i][j]['adjacency_matrix'])
